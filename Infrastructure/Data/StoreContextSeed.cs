@@ -43,6 +43,17 @@ namespace Infrastructure.Data
 
                     await context.SaveChangesAsync();
                 }
+
+                      if(!context.Videos.Any())
+                {
+                    var videosData = File.ReadAllText("../Infrastructure/Data/SeedData/videos.json");
+                    var videos = JsonSerializer.Deserialize<List<Video>>(videosData);
+                    foreach(var item in videos){
+                        context.Videos.Add(item);
+                    }
+
+                    await context.SaveChangesAsync();
+                }
             }catch(Exception e){
                 var logger = loggerFactory.CreateLogger<StoreContextSeed>();
                 logger.LogError(e.Message);

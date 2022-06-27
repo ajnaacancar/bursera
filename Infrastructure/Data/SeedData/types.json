@@ -1,18 +1,18 @@
 [
   {
     "Id": 1,
-    "Name": "Boards"
+    "Name": "Programing"
   },
   {
     "Id": 2,
-    "Name": "Hats"
+    "Name": "Marketing"
   },
   {
     "Id": 3,
-    "Name": "Boots"
+    "Name": "Math"
   },
   {
     "Id": 4,
-    "Name": "Gloves"
+    "Name": "Cloud technologies"
   }
 ]

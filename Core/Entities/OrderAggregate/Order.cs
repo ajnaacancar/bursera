@@ -11,7 +11,7 @@ namespace Core.Entities.OrderAggregate
         {
         }
 
-        public Order(string buyerEmail,  Address address, IReadOnlyList<OrderItem> orderItems, decimal subtotal)
+        public Order(string buyerEmail,  Address address, IReadOnlyList<OrderItem> orderItems, decimal subtotal, string paymentIntentId)
         {
             BuyerEmail = buyerEmail;
             // OrderDate = orderDate;
@@ -19,7 +19,7 @@ namespace Core.Entities.OrderAggregate
             OrderItems = orderItems;
             Subtotal = subtotal;
             // Status = status;
-            // PaymentIntentId = paymentIntentId;
+            PaymentIntentId = paymentIntentId;
         }
 
         public string BuyerEmail { get; set; }

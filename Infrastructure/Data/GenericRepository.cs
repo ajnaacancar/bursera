@@ -62,5 +62,10 @@ namespace Infrastructure.Data
         {
              _context.Set<T>().Remove(entity);
         }
+
+        public async Task<IReadOnlyList<T>> ListAllAsyncById(ISpecification<T> spec)
+        {
+            return await ApplySpecification(spec).ToListAsync();
+        }
     }
 }

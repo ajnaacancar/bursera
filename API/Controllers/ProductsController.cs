@@ -19,18 +19,20 @@ namespace API.Controllers
         private readonly IGenericRepository<Product> _productsRepo;
         private readonly IGenericRepository<ProductBrand> _productBrandRepos;
         private readonly IGenericRepository<ProductType> _productTypeRepo;
-
+        private readonly IGenericRepository<Video> _videoRepo;
         private readonly IMapper _mapper;
         public ProductsController(
             IGenericRepository<Product> productsRepo, 
             IGenericRepository<ProductBrand> productBrandRepos, 
             IGenericRepository<ProductType> productTypeRepo,
+            IGenericRepository<Video> videoRepo,
             IMapper mapper
             )
         {
             _productBrandRepos = productBrandRepos;
             _productsRepo = productsRepo;
             _productTypeRepo = productTypeRepo;
+            _videoRepo = videoRepo;
             _mapper = mapper;
           
   
@@ -70,11 +72,18 @@ namespace API.Controllers
         {   
            return Ok(await _productBrandRepos.ListAllAsync());
         }
-
+        
         [HttpGet("types")]
          public async Task<ActionResult<IReadOnlyList<ProductType>>> getProductTypes()
         {   
            return Ok(await _productTypeRepo.ListAllAsync());
+        }
+
+          [HttpGet("videos/{productId}")]
+         public async Task<ActionResult<IReadOnlyList<Video>>> getVideos(int productId)
+        {   
+           var  spec = new VideoSpecification(productId);
+           return Ok(await _videoRepo.ListAllAsyncById(spec));
         }
     }
 }
